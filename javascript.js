@@ -1,6 +1,7 @@
 let humanScore = 0
 let computerScore = 0
 
+
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
@@ -45,20 +46,23 @@ function playRound(humanChoice, computerChoice) {
         console.log("oh what? You won..")
         humanScore += 1;
     }
-}
-
-function playGame() {
-    for (let round = 0; round < 5; round++){
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-    }
-
-    console.log('Human Score:', humanScore)
-    console.log('Computer Score:', computerScore)
-}
-
-playGame()
+};
 
 
+let rock = document.querySelector("#Rock");
 
+rock.addEventListener('click', () => {
+    playRound('rock', getComputerChoice());
+});
+
+let scissors = document.querySelector("#Scissors");
+
+scissors.addEventListener('click', () => {
+    playRound('scissors', getComputerChoice());
+});
+
+let paper = document.querySelector("#Paper");
+
+paper.addEventListener('click', () => {
+    playRound('paper', getComputerChoice());
+});
