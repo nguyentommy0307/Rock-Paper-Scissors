@@ -1,7 +1,6 @@
 let humanScore = 0
 let computerScore = 0
 
-
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
@@ -17,52 +16,67 @@ function getComputerChoice() {
     }
 }
 
-function getHumanChoice() {
-    let answer = prompt("Rock Paper or Scissors? ")
-    if (answer.toLowerCase() === "rock"){
-        return(answer.toLowerCase());
-    } else if (answer.toLowerCase() === "scissors") {
-        return(answer.toLowerCase());
-    } else if (answer.toLowerCase() === "paper"){
-        return(answer.toLowerCase());
-    } else {
-        return("are you stupid?")
-    }
+function disableButtons() {
+    rock.disabled = true;
+    scissors.disabled = true;
+    paper.disabled = true;
 }
 
 function playRound(humanChoice, computerChoice) {
     if (computerChoice === humanChoice) {
-        console.log("Tie!");
     } else if (computerChoice === 'rock' && humanChoice === 'scissors'){
-        console.log("Lol you lost");
         computerScore += 1;
     } else if (computerChoice === 'scissors' && humanChoice === 'paper'){
-        console.log("Lol you lost");
         computerScore += 1;
     } else if (computerChoice === 'paper' && humanChoice === 'rock'){
-        console.log("Lol you lost");
         computerScore += 1;
     } else {
-        console.log("oh what? You won..")
         humanScore += 1;
     }
 };
 
+let results = document.querySelector("#results")
 
 let rock = document.querySelector("#Rock");
 
-rock.addEventListener('click', () => {
-    playRound('rock', getComputerChoice());
-});
-
 let scissors = document.querySelector("#Scissors");
-
-scissors.addEventListener('click', () => {
-    playRound('scissors', getComputerChoice());
-});
 
 let paper = document.querySelector("#Paper");
 
+rock.addEventListener('click', () => {
+    playRound('rock', getComputerChoice());
+    results.textContent = `player: ${humanScore}, Computer: ${computerScore}`;
+    if (humanScore === 5) {
+        alert('Nice Lil Buddy');
+        disableButtons();
+    } else if (computerScore === 5) {
+        alert('lol you trash');
+        disableButtons();
+    }
+});
+
+
+scissors.addEventListener('click', () => {
+    playRound('scissors', getComputerChoice());
+    results.textContent = `player: ${humanScore}, Computer: ${computerScore}`;
+    if (humanScore === 5) {
+        alert('Nice Lil Buddy');
+        disableButtons();
+    } else if (computerScore === 5) {
+        alert('lol you trash');
+        disableButtons();
+    }
+});
+
 paper.addEventListener('click', () => {
     playRound('paper', getComputerChoice());
+    results.textContent = `player: ${humanScore}, Computer: ${computerScore}`;
+    if (humanScore === 5) {
+        alert('Nice Lil Buddy');
+        disableButtons();
+    } else if (computerScore === 5) {
+        alert('lol you trash');
+        disableButtons();
+    }
 });
+
